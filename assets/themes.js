@@ -855,5 +855,439 @@ const THEMES = {
       "video": "https://v.animethemes.moe/SoukouKiheiVotoms-ED1.webm",
       "seq": 99
     }
+  },
+  "inuyasha": {
+    "animeName": "InuYasha",
+    "slug": "inuyasha",
+    "op": {
+      "title": "Change the World",
+      "video": "https://v.animethemes.moe/InuYasha-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "My Will",
+      "video": "https://v.animethemes.moe/InuYasha-ED1.webm",
+      "seq": 1
+    }
+  },
+  "seed": {
+    "animeName": "Mobile Suit Gundam Seed",
+    "slug": "mobile_suit_gundam_seed",
+    "op": {
+      "title": "INVOKE",
+      "video": "https://v.animethemes.moe/GundamSeed-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Anna ni Isshodattanoni",
+      "video": "https://v.animethemes.moe/GundamSeed-ED1.webm",
+      "seq": 1
+    }
+  },
+  "naruto": {
+    "animeName": "Naruto",
+    "slug": "naruto",
+    "op": {
+      "title": "R★O★C★K★S",
+      "video": "https://v.animethemes.moe/Naruto-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Wind",
+      "video": "https://v.animethemes.moe/Naruto-ED1.webm",
+      "seq": 1
+    }
+  },
+  "bleach": {
+    "animeName": "BLEACH",
+    "slug": "bleach",
+    "op": {
+      "title": "*~Asterisk",
+      "video": "https://v.animethemes.moe/Bleach-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Life is Like a Boat",
+      "video": "https://v.animethemes.moe/Bleach-ED1.webm",
+      "seq": 1
+    }
+  },
+  "fma": {
+    "animeName": "Fullmetal Alchemist",
+    "slug": "fullmetal_alchemist",
+    "op": {
+      "title": "Melissa",
+      "video": "https://v.animethemes.moe/FullmetalAlchemist-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Kesenai Tsumi",
+      "video": "https://v.animethemes.moe/FullmetalAlchemist-ED1.webm",
+      "seq": 1
+    }
+  },
+  "deathnote": {
+    "animeName": "Death Note",
+    "slug": "death_note",
+    "op": {
+      "title": "THE WORLD",
+      "video": "https://v.animethemes.moe/DeathNote-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Alumina",
+      "video": "https://v.animethemes.moe/DeathNote-ED1.webm",
+      "seq": 1
+    }
+  },
+  "codegeass": {
+    "animeName": "Code Geass: Hangyaku no Lelouch",
+    "slug": "code_geass_hangyaku_no_lelouch",
+    "op": {
+      "title": "COLORS",
+      "video": "https://v.animethemes.moe/CodeGeass-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Yuukyou Seishunka",
+      "video": "https://v.animethemes.moe/CodeGeass-ED1.webm",
+      "seq": 1
+    }
+  },
+  "haruhi": {
+    "animeName": "Suzumiya Haruhi no Yuuutsu",
+    "slug": "suzumiya_haruhi_no_yuuutsu",
+    "op": {
+      "title": "Koi no Mikuru Densetsu",
+      "video": "https://v.animethemes.moe/SuzumiyaHaruhiNoYuuutsu-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Hare Hare Yukai",
+      "video": "https://v.animethemes.moe/SuzumiyaHaruhiNoYuuutsu-ED1.webm",
+      "seq": 99
+    }
+  },
+  "gintama": {
+    "animeName": "Gintama",
+    "slug": "gintama",
+    "op": {
+      "title": "Pray",
+      "video": "https://v.animethemes.moe/Gintama-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Fuusen Gum",
+      "video": "https://v.animethemes.moe/Gintama-ED1.webm",
+      "seq": 1
+    }
+  },
+  "shana": {
+    "animeName": "Shakugan no Shana",
+    "slug": "shakugan_no_shana",
+    "op": {
+      "title": "Hishoku no Sora",
+      "video": "https://v.animethemes.moe/ShakuganNoShana-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Yoake Umare Kuru Shoujo",
+      "video": "https://v.animethemes.moe/ShakuganNoShana-ED1.webm",
+      "seq": 1
+    }
+  },
+  "hikaru_go": {
+    "animeName": "Hikaru no Go",
+    "slug": "hikaru_no_go",
+    "op": {
+      "title": "Get Over",
+      "video": "https://v.animethemes.moe/HikaruNoGo-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Bokura no Bouken",
+      "video": "https://v.animethemes.moe/HikaruNoGo-ED1.webm",
+      "seq": 1
+    }
+  },
+  "toradora": {
+    "animeName": "Toradora!",
+    "slug": "toradora",
+    "op": {
+      "title": "Pre-Parade",
+      "video": "https://v.animethemes.moe/Toradora-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Vanilla Salt",
+      "video": "https://v.animethemes.moe/Toradora-ED1.webm",
+      "seq": 1
+    }
+  },
+  "fairytail": {
+    "animeName": "Fairy Tail",
+    "slug": "fairy_tail",
+    "op": {
+      "title": "Snow Fairy",
+      "video": "https://v.animethemes.moe/FairyTail-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Kanpeki gu~no ne",
+      "video": "https://v.animethemes.moe/FairyTail-ED1.webm",
+      "seq": 1
+    }
+  },
+  "fatesn": {
+    "animeName": "Fate/stay night",
+    "slug": "fatestay_night",
+    "op": {
+      "title": "disillusion",
+      "video": "https://v.animethemes.moe/FateStayNight-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Anata ga Ita Mori",
+      "video": "https://v.animethemes.moe/FateStayNight-ED1.webm",
+      "seq": 1
+    }
+  },
+  "kuroshitsuji": {
+    "animeName": "Kuroshitsuji",
+    "slug": "kuroshitsuji",
+    "op": {
+      "title": "Monokuro No Kiss",
+      "video": "https://v.animethemes.moe/Kuroshitsuji-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "I'm ALIVE!",
+      "video": "https://v.animethemes.moe/Kuroshitsuji-ED1.webm",
+      "seq": 1
+    }
+  },
+  "k-on": {
+    "animeName": "K-On!",
+    "slug": "k_on",
+    "op": {
+      "title": "Cagayake! Girls (Go Nin Ver.)",
+      "video": "https://v.animethemes.moe/KOn-OP1v2.webm",
+      "seq": 2
+    },
+    "ed": {
+      "title": "Don't say 'lazy'",
+      "video": "https://v.animethemes.moe/KOn-ED1.webm",
+      "seq": 99
+    }
+  },
+  "titan": {
+    "animeName": "Shingeki no Kyojin",
+    "slug": "shingeki_no_kyojin",
+    "op": {
+      "title": "Guren no Yumiya",
+      "video": "https://v.animethemes.moe/ShingekiNoKyojin-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Utsukushiki Zankoku na Sekai",
+      "video": "https://v.animethemes.moe/ShingekiNoKyojin-ED1.webm",
+      "seq": 1
+    }
+  },
+  "sao": {
+    "animeName": "Sword Art Online",
+    "slug": "sword_art_online",
+    "op": {
+      "title": "crossing field",
+      "video": "https://v.animethemes.moe/SwordArtOnline-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Yume Sekai",
+      "video": "https://v.animethemes.moe/SwordArtOnline-ED1.webm",
+      "seq": 1
+    }
+  },
+  "onepunch": {
+    "animeName": "One Punch Man",
+    "slug": "one_punch_man",
+    "op": {
+      "title": "THE HERO !! ~Okoreru Kobushi ni Hi wo Tsukero~",
+      "video": "https://v.animethemes.moe/OnePunchMan-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Hoshi yori Saki ni Mitsukete Ageru",
+      "video": "https://v.animethemes.moe/OnePunchMan-ED1.webm",
+      "seq": 1
+    }
+  },
+  "steins": {
+    "animeName": "Steins;Gate",
+    "slug": "steinsgate",
+    "op": {
+      "title": "Hacking to the Gate",
+      "video": "https://v.animethemes.moe/SteinsGate-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Toki Tsukasadoru Juuni no Meiyaku",
+      "video": "https://v.animethemes.moe/SteinsGate-ED1.webm",
+      "seq": 1
+    }
+  },
+  "tokyo_ghoul": {
+    "animeName": "Tokyo Ghoul",
+    "slug": "tokyo_ghoul",
+    "op": {
+      "title": "unravel",
+      "video": "https://v.animethemes.moe/TokyoGhoul-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Seijatachi",
+      "video": "https://v.animethemes.moe/TokyoGhoul-ED1.webm",
+      "seq": 99
+    }
+  },
+  "mha": {
+    "animeName": "Boku no Hero Academia",
+    "slug": "boku_no_hero_academia",
+    "op": {
+      "title": "The Day",
+      "video": "https://v.animethemes.moe/BokuNoHeroAcademia-OP1-NCBD1080.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "HEROES",
+      "video": "https://v.animethemes.moe/BokuNoHeroAcademia-ED1-NCBD1080.webm",
+      "seq": 99
+    }
+  },
+  "rezero": {
+    "animeName": "Re:Zero kara Hajimeru Isekai Seikatsu",
+    "slug": "rezero_kara_hajimeru_isekai_seikatsu",
+    "op": {
+      "title": "Redo",
+      "video": "https://v.animethemes.moe/ReZero-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "STYX HELIX",
+      "video": "https://v.animethemes.moe/ReZero-ED1.webm",
+      "seq": 1
+    }
+  },
+  "haikyuu": {
+    "animeName": "Haikyuu!!",
+    "slug": "haikyuu",
+    "op": {
+      "title": "Imagination",
+      "video": "https://v.animethemes.moe/Haikyuu-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Tenchi Geshi",
+      "video": "https://v.animethemes.moe/Haikyuu-ED1.webm",
+      "seq": 1
+    }
+  },
+  "jujutsu": {
+    "animeName": "Jujutsu Kaisen",
+    "slug": "jujutsu_kaisen",
+    "op": {
+      "title": "Kaikai Kitan",
+      "video": "https://v.animethemes.moe/JujutsuKaisen-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "LOST IN PARADISE feat. AKLO",
+      "video": "https://v.animethemes.moe/JujutsuKaisen-ED1.webm",
+      "seq": 1
+    }
+  },
+  "spy": {
+    "animeName": "Spy x Family",
+    "slug": "spy_x_family",
+    "op": {
+      "title": "Mixed Nuts",
+      "video": "https://v.animethemes.moe/SpyXFamily-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Kigeki",
+      "video": "https://v.animethemes.moe/SpyXFamily-ED1.webm",
+      "seq": 99
+    }
+  },
+  "chainsaw": {
+    "animeName": "Chainsaw Man",
+    "slug": "chainsaw_man",
+    "op": {
+      "title": "KICK BACK",
+      "video": "https://v.animethemes.moe/ChainsawMan-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "CHAINSAW BLOOD",
+      "video": "https://v.animethemes.moe/ChainsawMan-ED1.webm",
+      "seq": 1
+    }
+  },
+  "bocchi": {
+    "animeName": "Bocchi the Rock!",
+    "slug": "bocchi_the_rock",
+    "op": {
+      "title": "Seishun Complex",
+      "video": "https://v.animethemes.moe/BocchiTheRock-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Distortion!!",
+      "video": "https://v.animethemes.moe/BocchiTheRock-ED1.webm",
+      "seq": 1
+    }
+  },
+  "frieren": {
+    "animeName": "Sousou no Frieren",
+    "slug": "sousou_no_frieren",
+    "op": {
+      "title": "Yuusha",
+      "video": "https://v.animethemes.moe/SousouNoFrieren-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Anytime Anywhere",
+      "video": "https://v.animethemes.moe/SousouNoFrieren-ED1.webm",
+      "seq": 1
+    }
+  },
+  "yugioh": {
+    "animeName": "Yu☆Gi☆Oh! Duel Monsters",
+    "slug": "yugioh_duel_monsters",
+    "op": {
+      "title": "Voice",
+      "video": "https://v.animethemes.moe/YGODuelMonsters-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Genki no Shower",
+      "video": "https://v.animethemes.moe/YGODuelMonsters-ED1.webm",
+      "seq": 1
+    }
+  },
+  "oshi": {
+    "animeName": "[Oshi no Ko]",
+    "slug": "oshi_no_ko",
+    "op": {
+      "title": "Idol",
+      "video": "https://v.animethemes.moe/OshiNoKo-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Mephisto",
+      "video": "https://v.animethemes.moe/OshiNoKo-ED1.webm",
+      "seq": 99
+    }
   }
 };

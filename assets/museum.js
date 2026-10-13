@@ -6,7 +6,13 @@
     { key: "80s", title: "80年代馆", sub: "HALL OF THE 1980s",
       desc: "从机器人到圣衣，从小学生到世纪末救世主——电视机前的十年热血。" },
     { key: "90s", title: "90年代馆", sub: "HALL OF THE 1990s",
-      desc: "篮球、侦探、水手服与数码世界——平成年代的群星。" }
+      desc: "篮球、侦探、水手服与数码世界——平成年代的群星。" },
+    { key: "00s", title: "00年代馆", sub: "HALL OF THE 2000s",
+      desc: "游戏王、火影与炼金术——平成少年的热血续章。" },
+    { key: "10s", title: "10年代馆", sub: "HALL OF THE 2010s",
+      desc: "巨人、刀剑与魔法少女——网络时代的群像史诗。" },
+    { key: "20s", title: "20年代馆", sub: "HALL OF THE 2020s",
+      desc: "咒术、间谍、摇滚与芙莉莲——正在书写的新经典。" }
   ];
 
   var state = { hall: "all", q: "" };
@@ -210,7 +216,7 @@
       CHARACTERS.length + " 位人物",
       Object.keys(animes).length + " 部作品",
       Object.keys(halls).length + " 座展厅",
-      "1980–1999"
+      "1980 – 至今"
     ].forEach(function (t) { box.appendChild(el("span", "", t)); });
     document.getElementById("intro-count").textContent = String(CHARACTERS.length);
   }
