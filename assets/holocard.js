@@ -243,6 +243,16 @@ function bindControls() {
     targetZoom = THREE.MathUtils.clamp(targetZoom - e.deltaY * 0.001, 0.8, 1.2);
     resize();
   }, { passive: false });
+  /* 鼠标移入：暂停自动展示，把控制权交给用户；移出：恢复自动旋转 */
+  container.addEventListener("pointerenter", () => {
+    auto = false;
+    if (flipped) { flipped = false; targetY = rotY % (Math.PI * 2); }
+  });
+  container.addEventListener("pointerleave", () => {
+    dragging = false;
+    auto = true;
+    flipped = false;
+  });
 }
 function roundedShape(w, h, r) {
   const s = new THREE.Shape(), x = -w / 2, y = -h / 2;
@@ -324,6 +334,9 @@ async function open(imgUrl, ch, no) {
     uSafeOffset: { value: new THREE.Vector2(0, 0) },
   };
   buildCard();
+  auto = true;                    /* 打开即自动旋转展示 */
+  flipped = false;
+  targetX = 0.02; targetY = -0.1; targetZoom = 1;
   cancelAnimationFrame(raf);
   lastTime = 0;
   raf = requestAnimationFrame(animate);

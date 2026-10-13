@@ -137,62 +137,40 @@
     document.getElementById("archive-quote").textContent = ch.quote ? "「" + ch.quote + "」" : "";
     document.getElementById("archive-src").href = ch.source;
     fillTheme(ch);
-    switchFigure("flat", ch, no);
+    showHolo(ch, no);
 
     modal.hidden = false;
     document.body.style.overflow = "hidden";
   }
 
-  /* ---------- 平面 / 3D 展台切换 ---------- */
-  var currentMode = "flat";
-  function switchFigure(mode, ch, no) {
-    currentMode = mode;
-    document.querySelectorAll(".fig-tab").forEach(function (t) {
-      t.classList.toggle("is-active", t.getAttribute("data-mode") === mode);
-    });
-    var flat = document.getElementById("figure-flat");
+  /* ---------- 闪卡：随档案直接展示 ---------- */
+  function showHolo(ch, no) {
     var holo = document.getElementById("figure-holo");
-    var dlBtn = document.getElementById("holo-dl");
-    if (mode === "holo") {
-      flat.hidden = true;
-      holo.hidden = false;
-      dlBtn.hidden = false;
-      if (window.HoloCard) {
-        window.HoloCard.open(ch.image, ch, no).then(function (ok) {
-          if (!ok) {
-            /* 初始化偶发失败：800ms 后自动重试一次，仍失败才回退平面 */
-            setTimeout(function () {
-              window.HoloCard.open(ch.image, ch, no).then(function (ok2) {
-                if (!ok2) {
-                  holo.hidden = true;
-                  dlBtn.hidden = true;
-                  flat.hidden = false;
-                  switchFigure("flat", ch, no);
-                }
-              });
-            }, 800);
-          }
-        });
-      } else {
-        holo.hidden = true;
-        dlBtn.hidden = true;
-        flat.hidden = false;
-        switchFigure("flat", ch, no);
-      }
+    var label = document.getElementById("holo-label");
+    var btns = document.getElementById("holo-btns");
+    var flat = document.getElementById("figure-flat");
+    holo.hidden = false; label.hidden = false; btns.hidden = false;
+    if (window.HoloCard) {
+      window.HoloCard.open(ch.image, ch, no).then(function (ok) {
+        if (!ok) {
+          setTimeout(function () {
+            window.HoloCard.open(ch.image, ch, no).then(function (ok2) {
+              if (!ok2) { holo.hidden = true; label.hidden = true; btns.hidden = true; }
+            });
+          }, 800);
+        }
+      });
     } else {
-      holo.hidden = true;
-      dlBtn.hidden = true;
-      flat.hidden = false;
-      if (window.HoloCard) window.HoloCard.close();
+      holo.hidden = true; label.hidden = true; btns.hidden = true;
     }
   }
-
-  document.querySelectorAll(".fig-tab").forEach(function (t) {
-    t.addEventListener("click", function () {
-      if (!currentChar) return;
-      switchFigure(t.getAttribute("data-mode"), currentChar, currentNo);
-    });
-  });
+  function hideHolo() {
+    var holo = document.getElementById("figure-holo");
+    var label = document.getElementById("holo-label");
+    var btns = document.getElementById("holo-btns");
+    holo.hidden = true; label.hidden = true; btns.hidden = true;
+    if (window.HoloCard) window.HoloCard.close();
+  }
 
   /* ---------- 主题曲：开档案即自动缓冲播放 + 站外跳转 ---------- */
   function fillTheme(ch) {
@@ -237,7 +215,7 @@
   function closeArchive() {
     modal.hidden = true;
     document.body.style.overflow = "";
-    if (window.HoloCard) window.HoloCard.close();
+    hideHolo();
   }
 
   modal.addEventListener("click", function (e) {
