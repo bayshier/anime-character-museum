@@ -1,0 +1,191 @@
+/* 经典动漫人物博物馆 · 展厅渲染与档案弹窗 */
+(function () {
+  "use strict";
+
+  var HALLS = [
+    { key: "80s", title: "80年代馆", sub: "HALL OF THE 1980s",
+      desc: "从机器人到圣衣，从小学生到世纪末救世主——电视机前的十年热血。" },
+    { key: "90s", title: "90年代馆", sub: "HALL OF THE 1990s",
+      desc: "篮球、侦探、水手服与数码世界——平成年代的群星。" }
+  ];
+
+  var state = { hall: "all", q: "" };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  /* 搜索：人物中/日/英名、作品中/英名、声优、原作者、名台词 */
+  function matchChar(c, q) {
+    var hay = [c.nameZh, c.nameJp, c.nameEn, c.animeZh, c.animeEn, c.cv, c.author, c.quote]
+      .join(" ").toLowerCase();
+    return hay.indexOf(q.toLowerCase()) !== -1;
+  }
+
+  function renderSearch(q) {
+    var root = document.getElementById("halls");
+    var hits = CHARACTERS.filter(function (c) { return matchChar(c, q); });
+    var section = el("section", "hall-section");
+    var title = el("h2", "hall-title", "🔍 搜索结果");
+    title.appendChild(el("small", "", q.toUpperCase()));
+    section.appendChild(title);
+    section.appendChild(el("p", "hall-desc", "在两座展馆的全部展品中检索（命中 " + hits.length + " 件）"));
+    if (!hits.length) {
+      var empty = el("p", "search-empty");
+      empty.appendChild(document.createTextNode("没有找到与 "));
+      empty.appendChild(el("b", "", q));
+      empty.appendChild(document.createTextNode(" 相关的展品——试试「龙珠」「灌篮」「圣斗士」或人物名。"));
+      section.appendChild(empty);
+    } else {
+      var grid = el("div", "grid");
+      hits.forEach(function (c) {
+        grid.appendChild(buildCase(c, EXNO[c.id]));
+      });
+      section.appendChild(grid);
+    }
+    root.appendChild(section);
+  }
+
+  /* 展品编号：全局唯一，EX-01 起按入库顺序 */
+  var EXNO = {};
+  function numberExhibits() {
+    CHARACTERS.forEach(function (c, i) {
+      EXNO[c.id] = "EX-" + String(i + 1).padStart(2, "0");
+    });
+  }
+
+  function buildCase(ch, no) {
+    var btn = el("button", "case");
+    btn.setAttribute("data-char", ch.id);
+
+    var frame = el("span", "case-frame");
+    var img = el("img", "case-photo");
+    img.src = ch.image; img.alt = ch.nameZh + "（" + ch.animeZh + "）"; img.loading = "lazy";
+    frame.appendChild(img);
+    frame.appendChild(el("span", "case-light"));
+    btn.appendChild(frame);
+
+    var plaque = el("span", "plaque");
+    plaque.appendChild(el("span", "no", no));
+    plaque.appendChild(el("span", "name", ch.nameZh));
+    plaque.appendChild(el("span", "from", ch.animeZh + " · " + ch.year));
+    btn.appendChild(plaque);
+
+    btn.addEventListener("click", function () { openArchive(ch, no); });
+    return btn;
+  }
+
+  function render() {
+    var root = document.getElementById("halls");
+    root.innerHTML = "";
+
+    if (state.q) { renderSearch(state.q); return; }
+
+    HALLS.forEach(function (hall) {
+      if (state.hall !== "all" && state.hall !== hall.key) return;
+      var chars = CHARACTERS.filter(function (c) { return c.hall === hall.key; });
+      var section = el("section", "hall-section");
+      var title = el("h2", "hall-title", hall.title);
+      title.appendChild(el("small", "", hall.sub));
+      section.appendChild(title);
+      section.appendChild(el("p", "hall-desc", hall.desc + "（" + chars.length + " 件展品）"));
+
+      var grid = el("div", "grid");
+      chars.forEach(function (c) { grid.appendChild(buildCase(c, EXNO[c.id])); });
+      section.appendChild(grid);
+      root.appendChild(section);
+    });
+  }
+
+  /* ---------- 档案弹窗 ---------- */
+  var modal = document.getElementById("archive");
+
+  function openArchive(ch, no) {
+    document.getElementById("archive-img").src = ch.image;
+    document.getElementById("archive-img").alt = ch.nameZh;
+    document.getElementById("archive-no").textContent = "展品编号 " + no;
+    document.getElementById("archive-name").textContent = ch.nameZh;
+    document.getElementById("archive-jp").textContent = ch.nameJp;
+    document.getElementById("archive-en").textContent = ch.nameEn;
+
+    var facts = document.getElementById("archive-facts");
+    facts.innerHTML = "";
+    [
+      ["登场作品", ch.animeZh + "（" + ch.animeEn + "）"],
+      ["首播年份", String(ch.year)],
+      ["原作者", ch.author],
+      ["配音", ch.cv || "—"]
+    ].forEach(function (row) {
+      var dt = el("dt", "", row[0]); var dd = el("dd", "", row[1]);
+      facts.appendChild(dt); facts.appendChild(dd);
+    });
+
+    document.getElementById("archive-feature").textContent = ch.feature;
+    document.getElementById("archive-intro").textContent = ch.intro;
+    document.getElementById("archive-quote-wrap").hidden = !ch.quote;
+    document.getElementById("archive-quote").textContent = ch.quote ? "「" + ch.quote + "」" : "";
+    document.getElementById("archive-src").href = ch.source;
+
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeArchive() {
+    modal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  modal.addEventListener("click", function (e) {
+    if (e.target.hasAttribute("data-close")) closeArchive();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modal.hidden) closeArchive();
+  });
+
+  /* ---------- 展厅切换 ---------- */
+  document.querySelectorAll(".hall-tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      document.querySelectorAll(".hall-tab").forEach(function (t) { t.classList.remove("is-active"); });
+      tab.classList.add("is-active");
+      state.hall = tab.getAttribute("data-hall");
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  /* ---------- 门厅统计 ---------- */
+  function stats() {
+    var box = document.getElementById("stats");
+    var halls = {};
+    var animes = {};
+    CHARACTERS.forEach(function (c) {
+      halls[c.hall] = (halls[c.hall] || 0) + 1;
+      animes[c.animeKey] = 1;
+    });
+    [
+      CHARACTERS.length + " 位人物",
+      Object.keys(animes).length + " 部作品",
+      Object.keys(halls).length + " 座展厅",
+      "1980–1999"
+    ].forEach(function (t) { box.appendChild(el("span", "", t)); });
+    document.getElementById("intro-count").textContent = String(CHARACTERS.length);
+  }
+
+  /* ---------- 搜索框（150ms 防抖） ---------- */
+  var searchBox = document.getElementById("search");
+  var debounceTimer = null;
+  searchBox.addEventListener("input", function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+      state.q = searchBox.value.trim();
+      render();
+    }, 150);
+  });
+
+  numberExhibits();
+  stats();
+  render();
+})();

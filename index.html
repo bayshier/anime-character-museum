@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>经典动漫人物博物馆 · Retro Anime Character Museum</title>
+<meta name="description" content="免费参观的 80-90 年代经典动漫人物线上博物馆：35 位人物展品，双展厅，中文展签与讲解词。">
+<link rel="stylesheet" href="assets/styles.css?v=101">
+</head>
+<body>
+
+<header class="hall-hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">FREE ADMISSION · 免费参观 · 无需账号 · 无广告</p>
+    <h1>经典动漫人物博物馆</h1>
+    <p class="hero-en">RETRO ANIME CHARACTER MUSEUM</p>
+    <p class="hero-intro">
+      一座为怀旧而建的线上展馆。这里陈列 1980–1999 年间照亮电视机荧屏的
+      <b><span id="intro-count">…</span> 位经典人物</b>，每一件展品都配有中文展签、观察引导与讲解词。
+      第一阶段为平面展柜；3D 化展陈已在路上。
+    </p>
+    <div class="hero-stats" id="stats"></div>
+  </div>
+</header>
+
+<nav class="hall-nav" aria-label="展厅导航">
+  <button class="hall-tab is-active" data-hall="all">🏛️ 全部展品</button>
+  <button class="hall-tab" data-hall="80s">📺 80年代馆</button>
+  <button class="hall-tab" data-hall="90s">💿 90年代馆</button>
+  <input type="search" id="search" class="search-box" autocomplete="off"
+         placeholder="🔍 搜索人物 / 作品 / 声优…" aria-label="搜索展品">
+</nav>
+
+<main>
+  <section id="halls" class="halls"></section>
+</main>
+
+<footer class="hall-footer">
+  <p class="footer-motto">慢慢看，不着急 —— 发现一个有趣的细节，就足够了。</p>
+  <p>展品图片来自 <a href="https://anilist.co" rel="noopener" target="_blank">AniList</a> 公开数据库，
+     版权归各原作者、出版社与动画制作委员会所有；本馆为非商业的怀旧展览，如有异议请开 issue 即刻下架。</p>
+  <p>策展灵感来自 <a href="https://github.com/s010s/prehistoric-animal-museum" rel="noopener" target="_blank">s010s/prehistoric-animal-museum</a>（史前动物博物馆）·
+     由 <a href="https://github.com/bayshier" rel="noopener" target="_blank">bayshier</a> 修建 ·
+     <a href="https://github.com/bayshier/anime-character-museum" rel="noopener" target="_blank">GitHub</a></p>
+</footer>
+
+<div class="archive-modal" id="archive" hidden>
+  <div class="archive-backdrop" data-close></div>
+  <div class="archive-panel" role="dialog" aria-modal="true" aria-labelledby="archive-name">
+    <button class="archive-close" data-close aria-label="关闭档案">✕</button>
+    <div class="archive-figure">
+      <img id="archive-img" src="" alt="">
+      <span class="archive-phase">平面展品 · 3D 化排期中</span>
+    </div>
+    <div class="archive-body">
+      <p class="archive-no" id="archive-no"></p>
+      <h2 id="archive-name"></h2>
+      <p class="archive-names"><span id="archive-jp"></span><span id="archive-en"></span></p>
+      <dl class="archive-facts" id="archive-facts"></dl>
+      <div class="archive-section">
+        <h3>🔍 观察一下</h3>
+        <p id="archive-feature"></p>
+      </div>
+      <div class="archive-section">
+        <h3>🗣️ 讲解词</h3>
+        <p id="archive-intro"></p>
+      </div>
+      <div class="archive-section" id="archive-quote-wrap">
+        <h3>💬 名台词</h3>
+        <p class="archive-quote" id="archive-quote"></p>
+      </div>
+      <p class="archive-source">图片来源：<a id="archive-src" href="#" rel="noopener" target="_blank">AniList 人物页</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="assets/characters.js?v=101"></script>
+<script src="assets/museum.js?v=101"></script>
+</body>
+</html>

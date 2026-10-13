@@ -1,0 +1,76 @@
+# 经典动漫人物博物馆 · Retro Anime Character Museum
+
+一座免费参观的线上博物馆，陈列 **1980–1999 年**照亮电视机荧屏的经典动漫人物。
+免费开放 · 无需账号 · 无广告 · 无统计脚本。
+
+**线上展厅 → <https://bayshier.github.io/anime-character-museum/>**
+
+| 80年代馆 · 龙珠 | 90年代馆 · 灌篮高手 | 90年代馆 · 美少女战士 |
+| :---: | :---: | :---: |
+| ![孙悟空](exhibits/goku.jpg) | ![樱木花道](exhibits/hanamichi.jpg) | ![月野兔](exhibits/usagi.jpg) |
+
+## 为什么建这座馆
+
+灵感来自 [s010s/prehistoric-animal-museum](https://github.com/s010s/prehistoric-animal-museum)——
+那是一座为孩子和家长打造的史前动物 3D 博物馆。它证明了「博物馆式」的内容组织方式（展厅 · 展柜 ·
+铭牌 · 讲解词 · 来源声明）有多迷人。于是我们把它搬进了一代人的童年记忆：80–90 年代的经典动漫人物。
+
+慢慢看，不着急——发现一个有趣的细节，就足够了。
+
+## 第一阶段 · 平面展陈（当前）
+
+- **101 位人物展品**，来自 **50 部经典作品**，分设两座展厅（80s 馆 51 件 / 90s 馆 50 件）：
+  - 📺 **80年代馆**：哆啦A梦、机动战士高达、铁臂阿童木、阿拉蕾、福星小子、足球小将、北斗神拳、
+    龙珠、圣斗士星矢、城市猎人、乱马½、龙珠Z、超时空要塞Macross、棒球英豪、鲁邦三世、
+    阿基拉、风之谷、天空之城、龙猫、花仙子、聪明的一休、尼尔斯骑鹅旅行记、橙路、魔神坛斗士、
+    机动警察、魔神英雄传
+  - 💿 **90年代馆**：樱桃小丸子、美少女战士、幽游白书、蜡笔小新、灌篮高手、新世纪福音战士、
+    浪客剑心、四驱兄弟、名侦探柯南、宝可梦、海贼王、数码宝贝大冒险、秀逗魔导士、宇宙骑士、
+    机动战舰、魔法骑士、魔卡少女樱、金田一少年事件簿、中华一番、全职猎人、攻壳机动队、
+    剑风传奇、枪神、星际牛仔
+- 每件展品一个**内容包**：展柜照片 + 双语名（中/日/罗马字）+ 原作者 + 声优 + 观察引导 +
+  讲解词 + 名台词 + 来源链接（致敬参考项目的 `provenance` 档案传统）
+- 🔍 **站内搜索**：导航栏输入人物名（中/日/英）、作品名、声优或原作者，实时过滤两馆全部展品
+- 展品编号全局唯一（EX-01 → EX-101）
+- 纯静态、零依赖、零构建：`index.html` + 三个资源文件，克隆即用
+- 响应式布局，手机 / 平板 / 桌面均可参观；展品弹窗支持 Esc 关闭
+
+## 第二阶段 · 3D 化展陈（计划中）
+
+参照原版史前动物博物馆的 Three.js 展陈，把平面展品升级为可旋转的 3D 模型：
+
+1. 使用第三方**图片转 3D** 工具（如 Tripo / Meshy / Rodin 等图生 3D 服务）
+   把展品立绘生成 GLB 模型；
+2. 为每件展品补齐 `model/model.glb` 与轨道查看器（拖拽旋转、缩放）；
+3. 保留现有展签、讲解词与来源声明结构——内容包格式已为此预留。
+
+## 本地参观
+
+```bash
+git clone https://github.com/bayshier/anime-character-museum
+cd anime-character-museum
+# 直接用浏览器打开 index.html，或：
+python3 -m http.server 8080   # 访问 http://localhost:8080
+```
+
+## 目录结构
+
+```
+├── index.html          # 大厅：门厅 / 展厅导航 / 档案弹窗
+├── assets/
+│   ├── styles.css      # 暗色展馆视觉（拱形展柜 + 黄铜铭牌）
+│   ├── museum.js       # 展厅渲染与档案交互（原生 ES5，无依赖）
+│   └── characters.js   # 展品内容包数据（由策展管线生成）
+├── exhibits/           # 101 张展品图（抓取自 AniList 公开数据）
+├── NOTICE.md           # 图片权利声明（务必一读）
+└── README.md
+```
+
+## 权利与致谢
+
+- 展品图片均来自 [AniList](https://anilist.co) 公开数据库，**版权归各原作者、出版社与动画制作委员会所有**；
+  本馆是非商业的怀旧展览，如有权利异议，[开个 issue](https://github.com/bayshier/anime-character-museum/issues) 即刻下架。
+  详见 [NOTICE.md](NOTICE.md)。
+- 策展与站点形态致敬 [s010s/prehistoric-animal-museum](https://github.com/s010s/prehistoric-animal-museum)。
+- 人物资料交叉核对自 AniList 公开数据。
+- 本馆由 [bayshier](https://github.com/bayshier) 修建，代码 MIT 许可证。
