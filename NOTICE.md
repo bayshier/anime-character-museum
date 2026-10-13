@@ -23,6 +23,12 @@
 亚克力立牌），不构成新的美术作品；未来接入图生 3D 服务生成的模型同样属于原图的
 衍生物，权利归属与图片一致。
 
+## 全息闪卡
+
+档案弹窗中的「闪卡」渲染效果改编自 [EverettFish/holo-card-studio](https://github.com/EverettFish/holo-card-studio)
+（MIT 许可证）的 web-holographic 查看器，四层纹理由展品图片在浏览器中实时生成。
+闪卡画面属于展品图片的衍生展示，角色形象权利归属与图片一致；下载的 PNG 仅供个人收藏。
+
 ## 主题曲片段
 
 档案弹窗中的主题曲试看片段来自 [AnimeThemes](https://animethemes.moe) 开放档案

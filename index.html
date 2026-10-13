@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>经典动漫人物博物馆 · Anime Character Museum</title>
 <meta name="description" content="免费参观的经典动漫人物线上博物馆：1980 年至今 190+ 位人物展品，五座年代展厅，中文展签、主题曲与讲解词。">
-<link rel="stylesheet" href="assets/styles.css?v=214">
+<link rel="stylesheet" href="assets/styles.css?v=215">
 <script type="importmap">
 {
   "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    "three": "./vendor/three.module.js",
+    "three/addons/": "./vendor/addons/"
   }
 }
 </script>
@@ -62,13 +62,14 @@
     <div class="archive-figure">
       <div class="figure-tabs">
         <button class="fig-tab is-active" data-mode="flat">🖼️ 平面</button>
-        <button class="fig-tab" data-mode="3d">🧊 3D 展台</button>
+        <button class="fig-tab" data-mode="holo">✨ 闪卡</button>
       </div>
       <div class="figure-view" id="figure-flat">
         <img id="archive-img" src="" alt="">
       </div>
-      <div class="figure-view" id="archive-3d" hidden></div>
-      <span class="archive-phase" id="archive-phase">3D 展台 · 拖拽旋转查看</span>
+      <div class="figure-view" id="figure-holo" hidden></div>
+      <span class="archive-phase" id="archive-phase">全息闪卡 · 拖拽翻面</span>
+      <button class="holo-dl" id="holo-dl" hidden>⬇️ 下载闪卡 PNG</button>
     </div>
     <div class="archive-body">
       <p class="archive-no" id="archive-no"></p>
@@ -99,9 +100,9 @@
   </div>
 </div>
 
-<script src="assets/characters.js?v=214"></script>
-<script src="assets/themes.js?v=214"></script>
-<script src="assets/museum.js?v=214"></script>
-<script type="module" src="assets/viewer3d.js?v=214"></script>
+<script src="assets/characters.js?v=215"></script>
+<script src="assets/themes.js?v=215"></script>
+<script src="assets/museum.js?v=215"></script>
+<script type="module" src="assets/holocard.js?v=215"></script>
 </body>
 </html>

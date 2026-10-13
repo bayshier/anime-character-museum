@@ -109,9 +109,9 @@
   /* ---------- 档案弹窗 ---------- */
   var modal = document.getElementById("archive");
 
-  var currentChar = null;
+  var currentChar = null, currentNo = "";
   function openArchive(ch, no) {
-    currentChar = ch;
+    currentChar = ch; currentNo = no;
     document.getElementById("archive-img").src = ch.image;
     document.getElementById("archive-img").alt = ch.nameZh;
     document.getElementById("archive-no").textContent = "展品编号 " + no;
@@ -137,7 +137,7 @@
     document.getElementById("archive-quote").textContent = ch.quote ? "「" + ch.quote + "」" : "";
     document.getElementById("archive-src").href = ch.source;
     fillTheme(ch);
-    switchFigure("flat", ch);
+    switchFigure("flat", ch, no);
 
     modal.hidden = false;
     document.body.style.overflow = "hidden";
@@ -145,47 +145,52 @@
 
   /* ---------- 平面 / 3D 展台切换 ---------- */
   var currentMode = "flat";
-  function switchFigure(mode, ch) {
+  function switchFigure(mode, ch, no) {
     currentMode = mode;
     document.querySelectorAll(".fig-tab").forEach(function (t) {
       t.classList.toggle("is-active", t.getAttribute("data-mode") === mode);
     });
     var flat = document.getElementById("figure-flat");
-    var view3d = document.getElementById("archive-3d");
-    if (mode === "3d") {
+    var holo = document.getElementById("figure-holo");
+    var dlBtn = document.getElementById("holo-dl");
+    if (mode === "holo") {
       flat.hidden = true;
-      view3d.hidden = false;
-      if (window.Viewer3D) {
-        window.Viewer3D.open(ch.image, ch.id).then(function (ok) {
+      holo.hidden = false;
+      dlBtn.hidden = false;
+      if (window.HoloCard) {
+        window.HoloCard.open(ch.image, ch, no).then(function (ok) {
           if (!ok) {
             /* 初始化偶发失败：800ms 后自动重试一次，仍失败才回退平面 */
             setTimeout(function () {
-              window.Viewer3D.open(ch.image, ch.id).then(function (ok2) {
+              window.HoloCard.open(ch.image, ch, no).then(function (ok2) {
                 if (!ok2) {
-                  view3d.hidden = true;
+                  holo.hidden = true;
+                  dlBtn.hidden = true;
                   flat.hidden = false;
-                  switchFigure("flat", ch);
+                  switchFigure("flat", ch, no);
                 }
               });
             }, 800);
           }
         });
       } else {
-        view3d.hidden = true;
+        holo.hidden = true;
+        dlBtn.hidden = true;
         flat.hidden = false;
-        switchFigure("flat", ch);
+        switchFigure("flat", ch, no);
       }
     } else {
-      view3d.hidden = true;
+      holo.hidden = true;
+      dlBtn.hidden = true;
       flat.hidden = false;
-      if (window.Viewer3D) window.Viewer3D.close();
+      if (window.HoloCard) window.HoloCard.close();
     }
   }
 
   document.querySelectorAll(".fig-tab").forEach(function (t) {
     t.addEventListener("click", function () {
       if (!currentChar) return;
-      switchFigure(t.getAttribute("data-mode"), currentChar);
+      switchFigure(t.getAttribute("data-mode"), currentChar, currentNo);
     });
   });
 
@@ -232,7 +237,7 @@
   function closeArchive() {
     modal.hidden = true;
     document.body.style.overflow = "";
-    if (window.Viewer3D) window.Viewer3D.close();
+    if (window.HoloCard) window.HoloCard.close();
   }
 
   modal.addEventListener("click", function (e) {

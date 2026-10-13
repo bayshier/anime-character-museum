@@ -165,9 +165,16 @@ a:hover { text-decoration: underline; }
 .fig-tab:hover { color: var(--plaque); border-color: var(--brass); }
 .fig-tab.is-active { color: #241d15; background: var(--brass); border-color: var(--brass); font-weight: 700; }
 .figure-view { position: relative; }
-#archive-3d { height: 300px; border-radius: 14px; border: 1px solid rgba(201,168,106,.45);
-  background: radial-gradient(300px 200px at 50% 40%, rgba(233,196,106,.12), rgba(23,19,15,.9)); overflow: hidden; }
-#archive-3d canvas { display: block; width: 100%; height: 100%; }
+#figure-holo { height: 340px; border-radius: 14px; border: 1px solid rgba(201,168,106,.45);
+  background: #fff; overflow: hidden; }
+#figure-holo canvas { display: block; width: 100%; height: 100%; }
+.holo-dl {
+  position: absolute; right: 14px; bottom: 14px; z-index: 3;
+  font-family: var(--sans); font-size: 12px; letter-spacing: .06em;
+  color: #241d15; background: var(--brass); border: none; border-radius: 999px;
+  padding: 6px 14px; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,.4);
+}
+.holo-dl:hover { filter: brightness(1.08); }
 .archive-figure img {
   width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
   border-radius: 90px 90px 10px 10px;
