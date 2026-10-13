@@ -63,7 +63,7 @@ void main(){vec4 art=texture2D(tBack,vec2(1.-vUv.x,vUv.y));vec2 p=vUv-.5;float f
 }`;
 
 /* ---------- 运行时纹理工厂 ---------- */
-const LW = 1024, LH = 1436;
+const LW = 1448, LH = 2048;
 function cv(w, h) { const c = document.createElement("canvas"); c.width = w; c.height = h; return c; }
 function rr(ctx, x, y, w, h, r) {
   ctx.beginPath();
@@ -75,10 +75,20 @@ function rr(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 function drawCover(ctx, img, W, H) {
-  const ir = img.width / img.height, cr = W / H;
+  /* 大倍率放大走渐进式：逐级倍增 + high 平滑，显著减少糊化 */
+  let src = img, sw = src.width, sh = src.height;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  while (sw * 2 <= W) {
+    const step = cv(sw * 2, sh * 2), sx = step.getContext("2d");
+    sx.imageSmoothingEnabled = true; sx.imageSmoothingQuality = "high";
+    sx.drawImage(src, 0, 0, sw * 2, sh * 2);
+    src = step; sw *= 2; sh *= 2;
+  }
+  const ir = sw / sh, cr = W / H;
   let dw, dh;
   if (ir > cr) { dh = H; dw = H * ir; } else { dw = W; dh = W / ir; }
-  ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+  ctx.drawImage(src, (W - dw) / 2, (H - dh) / 2, dw, dh);
 }
 function loadImg(src) {
   return new Promise((res, rej) => {
@@ -348,11 +358,20 @@ function close() {
 }
 function download() {
   try {
+    /* 超采样导出：临时把渲染分辨率放大 ~2.2 倍，文字与镭射纹理都会锐利得多 */
+    const w = container.clientWidth, h = container.clientHeight;
+    const scale = Math.min(8, Math.max(2.5, 2100 / w));
+    const oldRatio = renderer.getPixelRatio();
+    renderer.setPixelRatio(1);
+    renderer.setSize(Math.round(w * scale), Math.round(h * scale), false);
+    composer.setSize(Math.round(w * scale), Math.round(h * scale));
     composer.render();
     const a = document.createElement("a");
     a.download = (currentCh ? currentCh.nameZh : "card") + "-" + currentNo + "-holocard.png";
     a.href = renderer.domElement.toDataURL("image/png");
     a.click();
+    renderer.setPixelRatio(oldRatio);
+    resize();
   } catch (e) { console.error(e); }
 }
 window.HoloCard = {
