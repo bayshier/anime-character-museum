@@ -38,7 +38,7 @@
     var title = el("h2", "hall-title", "🔍 搜索结果");
     title.appendChild(el("small", "", q.toUpperCase()));
     section.appendChild(title);
-    section.appendChild(el("p", "hall-desc", "在两座展馆的全部展品中检索（命中 " + hits.length + " 件）"));
+    section.appendChild(el("p", "hall-desc", "在五座展馆的全部展品中检索（命中 " + hits.length + " 件）"));
     if (!hits.length) {
       var empty = el("p", "search-empty");
       empty.appendChild(document.createTextNode("没有找到与 "));
