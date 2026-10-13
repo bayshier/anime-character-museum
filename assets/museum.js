@@ -17,6 +17,24 @@
 
   var state = { hall: "all", q: "" };
 
+  /* 展示用缩略图（WebP 460×690）；闪卡纹理才加载原图 */
+  function thumbOf(src) {
+    return String(src).replace(/^exhibits\//, "exhibits/thumb/").replace(/\.jpg$/, ".webp");
+  }
+
+  /* Three.js 闪卡查看器按需加载：首次打开档案才拉取 three.module.js（约 1.3MB） */
+  var holoLoading = null;
+  function ensureHolo() {
+    if (window.HoloCard) return Promise.resolve();
+    if (!holoLoading) {
+      holoLoading = import("./holocard.js").catch(function (e) {
+        holoLoading = null;
+        throw e;
+      });
+    }
+    return holoLoading;
+  }
+
   function el(tag, cls, text) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -69,7 +87,7 @@
 
     var thumb = el("span", "case-thumb");
     var img = el("img", "case-photo");
-    img.src = ch.image; img.alt = ch.nameZh + "（" + ch.animeZh + "）"; img.loading = "lazy";
+    img.src = thumbOf(ch.image); img.alt = ch.nameZh + "（" + ch.animeZh + "）"; img.loading = "lazy"; img.decoding = "async";
     thumb.appendChild(img);
     thumb.appendChild(el("span", "case-no", no));
     var scrim = el("span", "case-scrim");
@@ -111,7 +129,7 @@
   var currentChar = null, currentNo = "";
   function openArchive(ch, no) {
     currentChar = ch; currentNo = no;
-    document.getElementById("archive-img").src = ch.image;
+    document.getElementById("archive-img").src = thumbOf(ch.image);
     document.getElementById("archive-img").alt = ch.nameZh;
     document.getElementById("archive-no").textContent = "展品编号 " + no;
     document.getElementById("archive-name").textContent = ch.nameZh;
@@ -149,19 +167,24 @@
     var btns = document.getElementById("holo-btns");
     var flat = document.getElementById("figure-flat");
     holo.hidden = false; label.hidden = false; btns.hidden = false;
-    if (window.HoloCard) {
-      window.HoloCard.open(ch.image, ch, no).then(function (ok) {
-        if (!ok) {
-          setTimeout(function () {
-            window.HoloCard.open(ch.image, ch, no).then(function (ok2) {
-              if (!ok2) { holo.hidden = true; label.hidden = true; btns.hidden = true; }
-            });
-          }, 800);
-        }
+    function start(openFn) {
+      openFn().then(function (hc) {
+        return window.HoloCard.open(ch.image, ch, no).then(function (ok) {
+          if (!ok) {
+            setTimeout(function () {
+              window.HoloCard.open(ch.image, ch, no).then(function (ok2) {
+                if (!ok2) { holo.hidden = true; label.hidden = true; btns.hidden = true; }
+              });
+            }, 800);
+          }
+        });
+      }).catch(function (e) {
+        window.__holoErr = String((e && e.message) || e);
+        holo.hidden = true; label.hidden = true; btns.hidden = true;
       });
-    } else {
-      holo.hidden = true; label.hidden = true; btns.hidden = true;
     }
+    if (window.HoloCard) start(function () { return Promise.resolve(); });
+    else start(ensureHolo);
   }
   function hideHolo() {
     var holo = document.getElementById("figure-holo");

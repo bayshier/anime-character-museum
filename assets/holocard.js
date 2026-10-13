@@ -327,7 +327,9 @@ async function open(imgUrl, ch, no) {
   cancelAnimationFrame(raf);
   container.hidden = false;
   requestAnimationFrame(resize);
-  const img = await loadImg(imgUrl);
+  /* 传入的可能是展示缩略图路径——纹理必须用原尺寸图保证导出清晰度 */
+  const fullUrl = String(imgUrl).replace(/^exhibits\/thumb\//, "exhibits/").replace(/\.webp$/, ".jpg");
+  const img = await loadImg(fullUrl);
   uniforms = {
     tSubject: { value: tex(subjectTexture(img)) },
     tBackground: { value: tex(bgTexture(img)) },

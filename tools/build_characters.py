@@ -220,6 +220,16 @@ for c in r7["characters"]:
         chars[c["id"]] = c
 
 
+r8 = json.load(open("/tmp/museum_b8_report.json", encoding="utf-8"))
+for c in r8["characters"]:
+    if c["id"] not in chars:
+        c = dict(c)
+        c.setdefault("source", "")
+        if not c.get("source") and c.get("anilistCharId"):
+            c["source"] = f"https://anilist.co/character/{c['anilistCharId']}"
+        chars[c["id"]] = c
+
+
 # ---- 文案修正层（混入英文词清理）----
 TEXT_FIXUPS = [
     ("kenshiro", "feature", "点穴之后-count-的必杀连击。", "点穴之后的必杀连击。"),
@@ -234,7 +244,9 @@ TEXT_FIXUPS = [
     ("ai-hoshi", "feature", "偶像舞台上的星形瞳孔，与 scanner 般的谎言话术。",
      "偶像舞台上的星形瞳孔，与精准如扫描仪的谎言话术。"),
     ("violet", "feature", "braided 金发与胸前的绿宝石胸针，敲字的手指戴着手套。",
-     "编起的金发与胸前的绿宝石胸针，敲字的手指戴着手套。"),
+     "编起的金发与胸前的绿宝石胸针，敲字的手指戴着手套。"),    ("inosuke", "intro", "lider般的好胜心", "野猪般的好胜心"),
+    ("inosuke", "intro", "。 野猪般", "。野猪般"),
+    ("dio", "feature", "与石鬼面和 later 的时空超能力。", "与石鬼面和后来的替身超能力。"),
 ]
 for _cid, _field, _old, _new in TEXT_FIXUPS:
     if _cid in chars and _old in chars[_cid].get(_field, ""):
@@ -268,7 +280,9 @@ ORDER = ["doraemon","nobita","amuro","char","arale","lum","tsubasa","kenshiro","
          "anya","denji","bocchi","frieren","ai-hoshi",
          "tanjiro","nezuko","zenitsu","ryoma","yoh","nagisa","violet","kaguya",
          "emma","saga","cell","robin","haibara","kagura","hijikata","gaara",
-         "rukia","sesshomaru","fushiguro","armin","todoroki","retsu"]
+         "rukia","sesshomaru","fushiguro","armin","todoroki","retsu",
+  "mu", "aldebaran", "deathmask", "aiolia", "shaka", "dohko", "milo", "aiolos", "shura", "aphrodite", "heiji", "shanks", "ace", "toguro", "renji", "erza", "misa", "itachi", "akira-toya", "sai", "kageyama", "jonathan", "dio", "inosuke", "giyu",
+]
 dups = [x for x in set(ORDER) if ORDER.count(x) > 1]
 assert not dups, "ORDER 重复: " + str(dups)
 assert set(ORDER) == set(chars), "差异: " + str(set(ORDER) ^ set(chars))
