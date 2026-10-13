@@ -155,6 +155,19 @@ a:hover { text-decoration: underline; }
   color: var(--plaque); font-size: 15px; cursor: pointer;
 }
 .archive-figure { position: relative; padding: 18px; }
+.figure-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
+.fig-tab {
+  font-family: var(--sans); font-size: 12px; letter-spacing: .08em;
+  color: var(--ink-dim); background: rgba(201,168,106,.08);
+  border: 1px solid rgba(201,168,106,.35); border-radius: 999px;
+  padding: 4px 14px; cursor: pointer; transition: all .2s;
+}
+.fig-tab:hover { color: var(--plaque); border-color: var(--brass); }
+.fig-tab.is-active { color: #241d15; background: var(--brass); border-color: var(--brass); font-weight: 700; }
+.figure-view { position: relative; }
+#archive-3d { height: 300px; border-radius: 14px; border: 1px solid rgba(201,168,106,.45);
+  background: radial-gradient(300px 200px at 50% 40%, rgba(233,196,106,.12), rgba(23,19,15,.9)); overflow: hidden; }
+#archive-3d canvas { display: block; width: 100%; height: 100%; }
 .archive-figure img {
   width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
   border-radius: 90px 90px 10px 10px;

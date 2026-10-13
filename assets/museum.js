@@ -109,7 +109,9 @@
   /* ---------- 档案弹窗 ---------- */
   var modal = document.getElementById("archive");
 
+  var currentChar = null;
   function openArchive(ch, no) {
+    currentChar = ch;
     document.getElementById("archive-img").src = ch.image;
     document.getElementById("archive-img").alt = ch.nameZh;
     document.getElementById("archive-no").textContent = "展品编号 " + no;
@@ -135,10 +137,50 @@
     document.getElementById("archive-quote").textContent = ch.quote ? "「" + ch.quote + "」" : "";
     document.getElementById("archive-src").href = ch.source;
     fillTheme(ch);
+    switchFigure("flat", ch);
 
     modal.hidden = false;
     document.body.style.overflow = "hidden";
   }
+
+  /* ---------- 平面 / 3D 展台切换 ---------- */
+  var currentMode = "flat";
+  function switchFigure(mode, ch) {
+    currentMode = mode;
+    document.querySelectorAll(".fig-tab").forEach(function (t) {
+      t.classList.toggle("is-active", t.getAttribute("data-mode") === mode);
+    });
+    var flat = document.getElementById("figure-flat");
+    var view3d = document.getElementById("archive-3d");
+    if (mode === "3d") {
+      flat.hidden = true;
+      view3d.hidden = false;
+      if (window.Viewer3D) {
+        window.Viewer3D.open(ch.image, ch.id).then(function (ok) {
+          if (!ok) {
+            view3d.hidden = true;
+            flat.hidden = false;
+            switchFigure("flat", ch);
+          }
+        });
+      } else {
+        view3d.hidden = true;
+        flat.hidden = false;
+        switchFigure("flat", ch);
+      }
+    } else {
+      view3d.hidden = true;
+      flat.hidden = false;
+      if (window.Viewer3D) window.Viewer3D.close();
+    }
+  }
+
+  document.querySelectorAll(".fig-tab").forEach(function (t) {
+    t.addEventListener("click", function () {
+      if (!currentChar) return;
+      switchFigure(t.getAttribute("data-mode"), currentChar);
+    });
+  });
 
   /* ---------- 主题曲：开档案即自动缓冲播放 + 站外跳转 ---------- */
   function fillTheme(ch) {
@@ -183,6 +225,7 @@
   function closeArchive() {
     modal.hidden = true;
     document.body.style.overflow = "";
+    if (window.Viewer3D) window.Viewer3D.close();
   }
 
   modal.addEventListener("click", function (e) {
