@@ -2,6 +2,11 @@
   <img src="docs/media/hero-banner.jpg" width="100%" alt="经典动漫人物博物馆：214 位经典人物 · 112 部作品 · 五座年代展厅">
 </p>
 
+<p align="center">
+  <video src="https://raw.githubusercontent.com/bayshier/anime-character-museum/master/docs/media/demo.webm" controls muted playsinline preload="metadata" width="100%"></video>
+  <sub><i>25 秒逛馆演示：搜索 → 档案弹窗 → 主题曲自动播放 → 全息闪卡 → 下载收藏（若播放器未显示，<a href="docs/media/demo.webm">点此观看</a>）</i></sub>
+</p>
+
 <h1 align="center">经典动漫人物博物馆</h1>
 
 <p align="center">
