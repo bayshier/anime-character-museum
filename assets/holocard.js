@@ -119,7 +119,7 @@ function lineTexture(img) {
   const lum = new Float32Array(w * h);
   for (let i = 0; i < w * h; i++)
     lum[i] = 0.299 * src[i * 4] + 0.587 * src[i * 4 + 1] + 0.114 * src[i * 4 + 2];
-  const out = cv(LW, LH), ox = out.getContext("2d");
+  const mid = cv(w, h), ox = mid.getContext("2d");
   const od = ox.createImageData(w, h);
   for (let y = 1; y < h - 1; y++)
     for (let x = 1; x < w - 1; x++) {
@@ -132,10 +132,10 @@ function lineTexture(img) {
       od.data[i * 4 + 3] = 255;
     }
   ox.putImageData(od, 0, 0);
-  /* 反相：线稿层需要「白线黑底」 */
+  /* 反相：线稿层需要「白线黑底」；先放大到全尺寸再反相 */
   const inv = cv(LW, LH), ix = inv.getContext("2d");
-  ix.filter = "invert(1) blur(1.5px)";
-  ix.drawImage(out, 0, 0, LW, LH);
+  ix.filter = "invert(1) blur(1.2px)";
+  ix.drawImage(mid, 0, 0, LW, LH);
   return inv;
 }
 function textTexture(ch, no) {
@@ -261,9 +261,18 @@ function buildCard() {
   const backMat = new THREE.ShaderMaterial({ uniforms, vertexShader: vertex, fragmentShader: backFragment });
   const goldMat = new THREE.MeshBasicMaterial({ color: 0xbfa26b });
   const shape = roundedShape(W, H, R);
-  const front = new THREE.Mesh(new THREE.ShapeGeometry(shape, 24), frontMat);
+  const frontGeo = new THREE.ShapeGeometry(shape, 24);
+  const backGeo = new THREE.ShapeGeometry(shape, 24);
+  /* ShapeGeometry 的 UV 是原始坐标，需归一化到 0..1 供着色器采样 */
+  for (const g of [frontGeo, backGeo]) {
+    const uv = g.attributes.uv;
+    for (let i = 0; i < uv.count; i++)
+      uv.setXY(i, (uv.getX(i) + W / 2) / W, (H / 2 - uv.getY(i)) / H);
+    uv.needsUpdate = true;
+  }
+  const front = new THREE.Mesh(frontGeo, frontMat);
   front.position.z = D / 2 + 0.01;
-  const back = new THREE.Mesh(new THREE.ShapeGeometry(shape, 24), backMat);
+  const back = new THREE.Mesh(backGeo, backMat);
   back.position.z = -(D / 2 + 0.01);
   back.rotation.y = Math.PI;
   const core = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: D, bevelEnabled: false, curveSegments: 24 }), goldMat);
