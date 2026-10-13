@@ -1289,5 +1289,89 @@ const THEMES = {
       "video": "https://v.animethemes.moe/OshiNoKo-ED1.webm",
       "seq": 99
     }
+  },
+  "demon_slayer": {
+    "animeName": "Kimetsu no Yaiba",
+    "slug": "kimetsu_no_yaiba",
+    "op": {
+      "title": "Gurenge",
+      "video": "https://v.animethemes.moe/KimetsuNoYaiba-OP1-NCBD1080.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "from the edge",
+      "video": "https://v.animethemes.moe/KimetsuNoYaiba-ED1-NCBD1080.webm",
+      "seq": 1
+    }
+  },
+  "shaman_king": {
+    "animeName": "Shaman King",
+    "slug": "shaman_king",
+    "op": {
+      "title": "Over Soul",
+      "video": "https://v.animethemes.moe/ShamanKing-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Trust You",
+      "video": "https://v.animethemes.moe/ShamanKing-ED1.webm",
+      "seq": 1
+    }
+  },
+  "clannad": {
+    "animeName": "Clannad",
+    "slug": "clannad",
+    "op": {
+      "title": "Megumeru ~cuckool mix 2007~",
+      "video": "https://v.animethemes.moe/Clannad-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Dango Daikazoku",
+      "video": "https://v.animethemes.moe/Clannad-ED1.webm",
+      "seq": 99
+    }
+  },
+  "violet": {
+    "animeName": "Violet Evergarden",
+    "slug": "violet_evergarden",
+    "op": {
+      "title": "Sincerely",
+      "video": "https://v.animethemes.moe/VioletEvergarden-OP1-Lyrics.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Michishirube",
+      "video": "https://v.animethemes.moe/VioletEvergarden-ED1v2.webm",
+      "seq": 1
+    }
+  },
+  "kaguya": {
+    "animeName": "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
+    "slug": "kaguya_sama_wa_kokurasetai_tensai_tachi_no_renai_zunousen",
+    "op": {
+      "title": "Love Dramatic feat. Rikka Ihara",
+      "video": "https://v.animethemes.moe/KaguyaSamaWaKokurasetai-OP1-Lyrics.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Sentimental Crisis",
+      "video": "https://v.animethemes.moe/KaguyaSamaWaKokurasetai-ED1-Lyrics.webm",
+      "seq": 1
+    }
+  },
+  "dreamland": {
+    "animeName": "Yakusoku no Neverland",
+    "slug": "yakusoku_no_neverland",
+    "op": {
+      "title": "Touch Off",
+      "video": "https://v.animethemes.moe/YakusokuNoNeverland-OP1-Lyrics.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Zettai Zetsumei",
+      "video": "https://v.animethemes.moe/YakusokuNoNeverland-ED1-Lyrics.webm",
+      "seq": 1
+    }
   }
 };
