@@ -77,6 +77,11 @@
 - 换主题：`tools/fetch_themes.py` 按 AnimeThemes 精确名补抓
 - 别忘了 `index.html` 里的 `?v=` 缓存破坏参数
 
+## 📺 演示视频
+
+[![demo](docs/media/hero-banner.jpg)](docs/media/demo.webm)
+*点击上方横幅或在 [docs/media/demo.webm](docs/media/demo.webm) 查看 25 秒功能演示（闪卡 / 主题曲 / 搜索）。*
+
 ## 🚀 本地参观
 
 ```bash
