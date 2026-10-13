@@ -158,9 +158,16 @@
       if (window.Viewer3D) {
         window.Viewer3D.open(ch.image, ch.id).then(function (ok) {
           if (!ok) {
-            view3d.hidden = true;
-            flat.hidden = false;
-            switchFigure("flat", ch);
+            /* 初始化偶发失败：800ms 后自动重试一次，仍失败才回退平面 */
+            setTimeout(function () {
+              window.Viewer3D.open(ch.image, ch.id).then(function (ok2) {
+                if (!ok2) {
+                  view3d.hidden = true;
+                  flat.hidden = false;
+                  switchFigure("flat", ch);
+                }
+              });
+            }, 800);
           }
         });
       } else {

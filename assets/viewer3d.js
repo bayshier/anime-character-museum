@@ -40,6 +40,7 @@ function ensureInit() {
 
   texLoader = new THREE.TextureLoader();
   texLoader.crossOrigin = "anonymous";
+  texLoader.onError = () => { /* 贴图失败：由调用方回退平面 */ };
 
   const resize = () => {
     if (!container || container.hidden) return;
@@ -174,7 +175,7 @@ async function open(imgUrl, exhibitId) {
     buildStandee(tex, img.height / img.width);
     cancelAnimationFrame(raf);
     animate();
-  });
+  }, undefined, () => { /* 贴图加载失败：清空让调用方回退 */ disposeGroup(); container.hidden = true; });
   return true;
 }
 
