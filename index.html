@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>经典动漫人物博物馆 · Anime Character Museum</title>
 <meta name="description" content="免费参观的经典动漫人物线上博物馆：1980 年至今 190+ 位人物展品，五座年代展厅，中文展签、主题曲与讲解词。">
-<link rel="stylesheet" href="assets/styles.css?v=217">
+<link rel="stylesheet" href="assets/styles.css?v=220">
 <script type="importmap">
 {
   "imports": {
@@ -19,13 +19,13 @@
 
 <header class="hall-hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">FREE ADMISSION · 免费参观 · 无需账号 · 无广告</p>
+    <p class="hero-eyebrow">✦ FREE ADMISSION · 免费参观 · 无需账号 · 无广告 ✦</p>
     <h1>经典动漫人物博物馆</h1>
     <p class="hero-en">ANIME CHARACTER MUSEUM · SINCE 1980</p>
     <p class="hero-intro">
       一座为怀旧与热爱而建的线上展馆。这里陈列 1980 年代至今照亮荧屏的
       <b><span id="intro-count">…</span> 位经典人物</b>，五座年代展厅，每件展品都配有中文展签、主题曲与讲解词。
-      现阶段为平面展陈；3D 化展馆已在路上。
+      每件展品都能生成一张可下载收藏的全息闪卡 ✨
     </p>
     <div class="hero-stats" id="stats"></div>
   </div>
@@ -70,8 +70,14 @@
         <div class="figure-view" id="figure-holo" hidden></div>
         <span class="figure-label" id="holo-label" hidden>✨ 全息闪卡 · 移入暂停 · 拖动看流光</span>
         <div class="holo-btns" id="holo-btns" hidden>
-          <button id="holo-dl">⬇️ 下载 PNG</button>
-          <button id="holo-flip">翻面</button>
+          <button id="holo-flip" title="翻面看背面铭牌">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            翻面
+          </button>
+          <button id="holo-dl" title="下载闪卡 PNG">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            下载 PNG
+          </button>
         </div>
       </div>
     </div>
@@ -104,9 +110,9 @@
   </div>
 </div>
 
-<script src="assets/characters.js?v=217"></script>
-<script src="assets/themes.js?v=217"></script>
-<script src="assets/museum.js?v=217"></script>
-<script type="module" src="assets/holocard.js?v=217"></script>
+<script src="assets/characters.js?v=220"></script>
+<script src="assets/themes.js?v=220"></script>
+<script src="assets/museum.js?v=220"></script>
+<script type="module" src="assets/holocard.js?v=220"></script>
 </body>
 </html>

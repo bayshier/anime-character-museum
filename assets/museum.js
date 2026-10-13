@@ -67,18 +67,17 @@
     var btn = el("button", "case");
     btn.setAttribute("data-char", ch.id);
 
-    var frame = el("span", "case-frame");
+    var thumb = el("span", "case-thumb");
     var img = el("img", "case-photo");
     img.src = ch.image; img.alt = ch.nameZh + "（" + ch.animeZh + "）"; img.loading = "lazy";
-    frame.appendChild(img);
-    frame.appendChild(el("span", "case-light"));
-    btn.appendChild(frame);
-
-    var plaque = el("span", "plaque");
-    plaque.appendChild(el("span", "no", no));
-    plaque.appendChild(el("span", "name", ch.nameZh));
-    plaque.appendChild(el("span", "from", ch.animeZh + " · " + ch.year));
-    btn.appendChild(plaque);
+    thumb.appendChild(img);
+    thumb.appendChild(el("span", "case-no", no));
+    var scrim = el("span", "case-scrim");
+    scrim.appendChild(el("span", "case-name", ch.nameZh));
+    scrim.appendChild(el("span", "case-from", ch.animeZh + " · " + ch.year));
+    thumb.appendChild(scrim);
+    btn.appendChild(thumb);
+    btn.appendChild(el("span", "case-hall", ch.year));
 
     btn.addEventListener("click", function () { openArchive(ch, no); });
     return btn;
@@ -253,6 +252,14 @@
     ].forEach(function (t) { box.appendChild(el("span", "", t)); });
     document.getElementById("intro-count").textContent = String(CHARACTERS.length);
   }
+
+  /* ---------- 闪卡按钮 ---------- */
+  document.getElementById("holo-dl").addEventListener("click", function () {
+    if (window.HoloCard) window.HoloCard.download();
+  });
+  document.getElementById("holo-flip").addEventListener("click", function () {
+    if (window.HoloCard) window.HoloCard.flip();
+  });
 
   /* ---------- 搜索框（150ms 防抖） ---------- */
   var searchBox = document.getElementById("search");
