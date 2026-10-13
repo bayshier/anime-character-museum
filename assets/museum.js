@@ -128,9 +128,50 @@
     document.getElementById("archive-quote-wrap").hidden = !ch.quote;
     document.getElementById("archive-quote").textContent = ch.quote ? "「" + ch.quote + "」" : "";
     document.getElementById("archive-src").href = ch.source;
+    fillTheme(ch);
 
     modal.hidden = false;
     document.body.style.overflow = "hidden";
+  }
+
+  /* ---------- 主题曲：开档案即自动缓冲播放 + 站外跳转 ---------- */
+  function fillTheme(ch) {
+    var video = document.getElementById("archive-theme-video");
+    var songEl = document.getElementById("archive-theme-song");
+    var hint = document.getElementById("archive-theme-hint");
+    var linksEl = document.getElementById("archive-theme-links");
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    hint.hidden = true;
+    linksEl.innerHTML = "";
+
+    var yt = document.createElement("a");
+    yt.href = "https://www.youtube.com/results?search_query=" +
+      encodeURIComponent(ch.animeEn + " OP theme");
+    yt.target = "_blank"; yt.rel = "noopener";
+    yt.textContent = "▶ YouTube 搜完整版";
+    linksEl.appendChild(yt);
+
+    var theme = (typeof THEMES !== "undefined") ? THEMES[ch.animeKey] : null;
+    var t = theme && (theme.op || theme.ed);
+    if (!t) {
+      songEl.textContent = "暂无可内嵌曲目，欢迎从上方链接试听：";
+      return;
+    }
+    video.src = t.video;
+    songEl.textContent = (theme.op ? "OP" : "ED") + " · " + t.title +
+      (theme.op && theme.ed ? "（另有 ED 可在站内切换试听）" : "");
+    /* 自动缓冲播放：先尝试有声，被浏览器拦截则静音自动播 */
+    video.muted = false;
+    var p = video.play();
+    if (p && p.catch) {
+      p.catch(function () {
+        video.muted = true;
+        video.play().catch(function () {});
+        hint.hidden = false;
+      });
+    }
   }
 
   function closeArchive() {

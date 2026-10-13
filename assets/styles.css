@@ -193,6 +193,16 @@ a:hover { text-decoration: underline; }
 }
 .archive-source { font-size: 12px; color: var(--ink-dim); margin-top: 16px; }
 
+/* ---------- 主题曲 ---------- */
+#archive-theme-video {
+  width: 100%; max-height: 210px; display: block;
+  border-radius: 10px; border: 1px solid rgba(201, 168, 106, .45); background: #000;
+}
+.theme-song { font-size: 13px; color: var(--plaque); margin-top: 8px; }
+.theme-hint { font-size: 11px; color: var(--brass); margin-top: 4px; }
+.theme-links { font-size: 12px; margin-top: 4px; }
+.theme-links a { margin-right: 10px; }
+
 /* ---------- 页脚 ---------- */
 .hall-footer {
   border-top: 1px solid rgba(201,168,106,.25);

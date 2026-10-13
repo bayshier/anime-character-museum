@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>经典动漫人物博物馆 · Retro Anime Character Museum</title>
 <meta name="description" content="免费参观的 80-90 年代经典动漫人物线上博物馆：35 位人物展品，双展厅，中文展签与讲解词。">
-<link rel="stylesheet" href="assets/styles.css?v=101">
+<link rel="stylesheet" href="assets/styles.css?v=128">
 </head>
 <body>
 
@@ -69,12 +69,20 @@
         <h3>💬 名台词</h3>
         <p class="archive-quote" id="archive-quote"></p>
       </div>
-      <p class="archive-source">图片来源：<a id="archive-src" href="#" rel="noopener" target="_blank">AniList 人物页</a></p>
+      <div class="archive-section" id="archive-theme-wrap">
+        <h3>🎵 主题曲</h3>
+        <video id="archive-theme-video" controls preload="auto" playsinline></video>
+        <p class="theme-song" id="archive-theme-song"></p>
+        <p class="theme-hint" id="archive-theme-hint" hidden>浏览器不允许自动出声，已静音自动播放——点视频控件解除静音。</p>
+        <p class="theme-links" id="archive-theme-links"></p>
+      </div>
+      <p class="archive-source">图片来源：<a id="archive-src" href="#" rel="noopener" target="_blank">AniList 人物页</a> · 主题曲片段来自 <a href="https://animethemes.moe" rel="noopener" target="_blank">AnimeThemes</a> 开放档案</p>
     </div>
   </div>
 </div>
 
-<script src="assets/characters.js?v=101"></script>
-<script src="assets/museum.js?v=101"></script>
+<script src="assets/characters.js?v=128"></script>
+<script src="assets/themes.js?v=128"></script>
+<script src="assets/museum.js?v=128"></script>
 </body>
 </html>
