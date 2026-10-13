@@ -799,5 +799,61 @@ const THEMES = {
       "video": "https://v.animethemes.moe/Kinnikuman-ED1.webm",
       "seq": 1
     }
+  },
+  "harlock": {
+    "animeName": "Uchuu Kaizoku Captain Harlock",
+    "slug": "uchuu_kaizoku_captain_harlock",
+    "op": {
+      "title": "Captain Harlock",
+      "video": "https://v.animethemes.moe/UchuuKaizokuCaptainHarlock-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Warera no Tabidachi",
+      "video": "https://v.animethemes.moe/UchuuKaizokuCaptainHarlock-ED1.webm",
+      "seq": 99
+    }
+  },
+  "kiteretsu": {
+    "animeName": "Kiteretsu Daihyakka",
+    "slug": "kiteretsu_daihyakka",
+    "op": {
+      "title": "Oyome-san ni Natte Agenaizo",
+      "video": "https://v.animethemes.moe/KiteretsuDaihyakka-OP1.webm",
+      "seq": 1
+    },
+    "ed": {
+      "title": "Magical Boy Magical Heart",
+      "video": "https://v.animethemes.moe/KiteretsuDaihyakka-ED1.webm",
+      "seq": 1
+    }
+  },
+  "utena": {
+    "animeName": "Shoujo Kakumei Utena",
+    "slug": "shoujo_kakumei_utena",
+    "op": {
+      "title": "Rinbu - revolution",
+      "video": "https://v.animethemes.moe/ShoujoKakumeiUtena-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Truth",
+      "video": "https://v.animethemes.moe/ShoujoKakumeiUtena-ED1.webm",
+      "seq": 1
+    }
+  },
+  "votoms": {
+    "animeName": "Soukou Kihei Votoms",
+    "slug": "soukou_kihei_votoms",
+    "op": {
+      "title": "Honoo no Sadame",
+      "video": "https://v.animethemes.moe/SoukouKiheiVotoms-OP1.webm",
+      "seq": 99
+    },
+    "ed": {
+      "title": "Itsumo Anata ga",
+      "video": "https://v.animethemes.moe/SoukouKiheiVotoms-ED1.webm",
+      "seq": 99
+    }
   }
 };
