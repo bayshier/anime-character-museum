@@ -17,6 +17,16 @@
 
   var state = { hall: "all", q: "" };
 
+  /* Fisher-Yates 洗牌：每次打开页面、切换展厅都随机排列展品 */
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
   /* 展示用缩略图（WebP 460×690）；闪卡纹理才加载原图 */
   function thumbOf(src) {
     return String(src).replace(/^exhibits\//, "exhibits/thumb/").replace(/\.jpg$/, ".webp");
@@ -109,7 +119,7 @@
 
     HALLS.forEach(function (hall) {
       if (state.hall !== "all" && state.hall !== hall.key) return;
-      var chars = CHARACTERS.filter(function (c) { return c.hall === hall.key; });
+      var chars = shuffle(CHARACTERS.filter(function (c) { return c.hall === hall.key; }));
       var section = el("section", "hall-section");
       var title = el("h2", "hall-title", hall.title);
       title.appendChild(el("small", "", hall.sub));
