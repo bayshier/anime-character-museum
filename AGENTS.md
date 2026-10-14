@@ -5,8 +5,8 @@
 
 ## 项目现状（2026-10-13）
 
-- **239 位人物 / 120 部作品 / 五座年代展厅**（80s 81 · 90s 87 · 00s 36 · 10s 22 · 20s 13）；第八批补齐黄金十二宫 10 位 + 热门补强 15 位（2026-10-13）
-- 展品编号全局唯一：EX-01 → EX-239（`assets/characters.js` 数组顺序即编号）
+- **268 位人物 / 121 部作品 / 五座年代展厅**（80s 82 · 90s 93 · 00s 50 · 10s 26 · 20s 17）；第八批黄金十二宫 10 位 + 热门补强 15 位、第九批高人气补强 29 位（2026-10-14）
+- 展品编号全局唯一：EX-01 → EX-268（`assets/characters.js` 数组顺序即编号）
 - **主题曲**：99/119 部内嵌（`assets/themes.js`，来自 AnimeThemes 开放档案），其余 YouTube 跳转兜底
 - **全息闪卡**：档案弹窗内实时生成（`assets/holocard.js`），支持翻面/缩放/自动旋转/PNG 下载（超采样 2100px）
 - **搜索**：导航栏输入框，按人物中/日/英名、作品、声优、原作者、台词实时过滤
@@ -17,7 +17,7 @@
 
 ```
 index.html            大厅 + 档案弹窗（立绘/闪卡双展）+ 主题曲 video
-assets/characters.js  239 条展品内容包（由 tools/build_characters.py 生成）
+assets/characters.js  268 条展品内容包（由 tools/build_characters.py 生成）
 assets/themes.js      99 条主题曲数据（由 tools/build_themes.py 生成）
 assets/museum.js      展厅渲染 / 搜索 / 档案弹窗 / 主题曲自动播放
 assets/holocard.js    全息闪卡查看器（改编自 holo-card-studio, MIT）

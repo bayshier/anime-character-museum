@@ -230,6 +230,15 @@ for c in r8["characters"]:
         chars[c["id"]] = c
 
 
+r9 = json.load(open("/tmp/museum_b9_report.json", encoding="utf-8"))
+for c in r9["characters"]:
+    if c["id"] not in chars:
+        c = dict(c)
+        c.setdefault("source", "")
+        if not c.get("source") and c.get("anilistCharId"):
+            c["source"] = f"https://anilist.co/character/{c['anilistCharId']}"
+        chars[c["id"]] = c
+
 # ---- 文案修正层（混入英文词清理）----
 TEXT_FIXUPS = [
     ("kenshiro", "feature", "点穴之后-count-的必杀连击。", "点穴之后的必杀连击。"),
@@ -252,36 +261,8 @@ for _cid, _field, _old, _new in TEXT_FIXUPS:
     if _cid in chars and _old in chars[_cid].get(_field, ""):
         chars[_cid][_field] = chars[_cid][_field].replace(_old, _new)
 
-ORDER = ["doraemon","nobita","amuro","char","arale","lum","tsubasa","kenshiro","goku","seiya",
-         "shiryu","ryo","kaori","ranma","vegeta","astroboy",
-         "maruko","usagi","yusuke","hiei","kurama","shinchan","hanamichi","rukawa","mitsui",
-         "shinji","rei","asuka","kenshin","goseiba","conan","pikachu","ash","luffy","agumon",
-         "krillin","piccolo","bulma","gohan","trunks","frieza","hyoga","ikki",
-         "miyagi","akagi","sendoh","kuwabara","shizuka","gian","suneo",
-         "rei-moon","ami","misato","kaworu","ran","zoro","nami",
-         "misty","meowth","raoh","akane","ataru","hiroshi","kaoru-k",
-         "minmay","hikaru-m","focker","tatsuya","minami","lupin","jigen","fujiko",
-         "kaneda","nausicaa","sheeta","pazu","totoro","lunlun-c","ikkyu-c","nils",
-         "kyosuke","madoka","ryo-st","noa","wataru","lina","gourry","dboy","ruri",
-         "hikaru-mk","sakura-cc","kero","kindaichi","mao","gon","killua","motoko",
-         "guts","vash","spike","faye",
-         "hitomi","tetsuro","maetel","oscar","kyoko","shurato","roshi",
-         "heero","takumi","onizuka","meimi","rantarou","jotaro","san",
-         "kiki","porco","shizuku","nadia","sara","reinhard","yang","van",
-         "hitomie","ryoko","nike","kukuri","kinniku",
-         "shun","saori","makoto","minako","kaito","usopp","sanji","genkai",
-         "brock","blackjack","parn","deedlit","harlock","kiteretsu","utena",
-         "natsumi","miyuki","chirico","leo",
-         "inuyasha-c","kagome","yugi","kaiba","kira","athrun","naruto","sasuke",
-         "kakashi","ichigo","edward","light","l","lelouch","suzaku","haruhi",
-         "gintoki","shana","hikaru-go","taiga","natsu","saber","sebastian","yui",
-         "madoka-kaname","homura","eren","levi","mikasa","kirito","asuna","saitama",
-         "okabe","kaneki","deku","bakugo","rem","hinata-vb","gojo","itadori",
-         "anya","denji","bocchi","frieren","ai-hoshi",
-         "tanjiro","nezuko","zenitsu","ryoma","yoh","nagisa","violet","kaguya",
-         "emma","saga","cell","robin","haibara","kagura","hijikata","gaara",
-         "rukia","sesshomaru","fushiguro","armin","todoroki","retsu",
-  "mu", "aldebaran", "deathmask", "aiolia", "shaka", "dohko", "milo", "aiolos", "shura", "aphrodite", "heiji", "shanks", "ace", "toguro", "renji", "erza", "misa", "itachi", "akira-toya", "sai", "kageyama", "jonathan", "dio", "inosuke", "giyu",
+ORDER = [
+  "doraemon", "nobita", "amuro", "char", "arale", "lum", "tsubasa", "kenshiro", "goku", "seiya", "shiryu", "ryo", "kaori", "ranma", "vegeta", "astroboy", "maruko", "usagi", "yusuke", "hiei", "kurama", "shinchan", "hanamichi", "rukawa", "mitsui", "shinji", "rei", "asuka", "kenshin", "goseiba", "conan", "pikachu", "ash", "luffy", "agumon", "krillin", "piccolo", "bulma", "gohan", "trunks", "frieza", "hyoga", "ikki", "miyagi", "akagi", "sendoh", "kuwabara", "shizuka", "gian", "suneo", "rei-moon", "ami", "misato", "kaworu", "ran", "zoro", "nami", "misty", "meowth", "raoh", "akane", "ataru", "hiroshi", "kaoru-k", "minmay", "hikaru-m", "focker", "tatsuya", "minami", "lupin", "jigen", "fujiko", "kaneda", "nausicaa", "sheeta", "pazu", "totoro", "lunlun-c", "ikkyu-c", "nils", "kyosuke", "madoka", "ryo-st", "noa", "wataru", "lina", "gourry", "dboy", "ruri", "hikaru-mk", "sakura-cc", "kero", "kindaichi", "mao", "gon", "killua", "motoko", "guts", "vash", "spike", "faye", "hitomi", "tetsuro", "maetel", "oscar", "kyoko", "shurato", "roshi", "heero", "takumi", "onizuka", "meimi", "rantarou", "jotaro", "san", "kiki", "porco", "shizuku", "nadia", "sara", "reinhard", "yang", "van", "hitomie", "ryoko", "nike", "kukuri", "kinniku", "shun", "saori", "makoto", "minako", "kaito", "usopp", "sanji", "genkai", "brock", "blackjack", "parn", "deedlit", "harlock", "kiteretsu", "utena", "natsumi", "miyuki", "chirico", "leo", "inuyasha-c", "kagome", "yugi", "kaiba", "kira", "athrun", "naruto", "sasuke", "kakashi", "ichigo", "edward", "light", "l", "lelouch", "suzaku", "haruhi", "gintoki", "shana", "hikaru-go", "taiga", "natsu", "saber", "sebastian", "yui", "madoka-kaname", "homura", "eren", "levi", "mikasa", "kirito", "asuna", "saitama", "okabe", "kaneki", "deku", "bakugo", "rem", "hinata-vb", "gojo", "itadori", "anya", "denji", "bocchi", "frieren", "ai-hoshi", "tanjiro", "nezuko", "zenitsu", "ryoma", "yoh", "nagisa", "violet", "kaguya", "emma", "saga", "cell", "robin", "haibara", "kagura", "hijikata", "gaara", "rukia", "sesshomaru", "fushiguro", "armin", "todoroki", "retsu", "mu", "aldebaran", "deathmask", "aiolia", "shaka", "dohko", "milo", "aiolos", "shura", "aphrodite", "heiji", "shanks", "ace", "toguro", "renji", "erza", "misa", "itachi", "akira-toya", "sai", "kageyama", "jonathan", "dio", "inosuke", "giyu", "mr-satan", "chopper", "mihawk", "hisoka", "kuroro", "tomoyo", "fujima", "hinata", "jiraiya", "byakuya", "aizen", "kikyo", "naraku", "shinpachi", "takasugi", "mustang", "fuji-sd", "tezuka", "lacus", "jonouchi", "ryuk", "joseph", "kishibe", "oikawa", "erwin", "rengoku", "shinobu", "nobara", "sukuna",
 ]
 dups = [x for x in set(ORDER) if ORDER.count(x) > 1]
 assert not dups, "ORDER 重复: " + str(dups)
